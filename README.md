@@ -18,10 +18,12 @@ DeepSeek Harness 的全局视觉补丁——**补内置主题插件到不了的�
 ## 装
 
 ```sh
-dsh plugin --profile web add github:<你的>/dsh-theme
+dsh plugin --profile web add github:yinguobing/dsh-theme
 ```
 
-装完重启一次 `dsh web`（它在进程启动时组合插件）。
+**Web UI**：**Plugins → Add plugin → Install a third-party plugin**，输入 `github:yinguobing/dsh-theme`，点 **Enable now**。
+
+装完重启一次 `dsh web`（它在进程启动时组合插件）。重启会换访问令牌，浏览器里的旧地址会 401，用启动日志里新打印的 URL。
 
 ## 现在改了什么
 
