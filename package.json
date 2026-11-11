@@ -1,0 +1,31 @@
+{
+  "name": "dsh-theme",
+  "version": "0.1.0",
+  "description": "Visual overrides for DeepSeek Harness: the parts the built-in theme plugin can't reach",
+  "type": "module",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "build.mjs",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    }
+  }
+}

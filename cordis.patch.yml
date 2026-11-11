@@ -1,0 +1,4 @@
+# dsh-theme — 给 DSH 补上主题插件到不了的那部分视觉样式。
+- insert:
+    - id: dsh-theme
+      name: dsh-theme

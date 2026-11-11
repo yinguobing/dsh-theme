@@ -1,0 +1,22 @@
+/**
+ * dsh-theme — 全局视觉覆盖。
+ *
+ * 只放内置主题插件到不了的规则：行高、间距等写死在组件里的值。
+ * 配色和字体交给 `--dsw-*` token（主题插件已经管了），这里不要重复定义。
+ */
+
+/* ── 对话区 Markdown ──────────────────────────────────────────
+   DSH 默认行高写死 32px：正文字号 14px 时比例 2.29 很松，拉到 22px 上限后
+   只剩 1.45，中文长段落读起来挤。这里按字号比例给一个 1.65。
+   选择器用属性前缀，因为类名是构建时的哈希（_markdown_xxxxx）。 */
+[class*='_markdown_'] {
+  line-height: 1.65;
+}
+[class*='_markdown_'] > p,
+[class*='_markdown_'] li {
+  margin-block: 0.85em;
+}
+[class*='_markdown_'] pre,
+[class*='_markdown_'] code {
+  line-height: 1.5;
+}
