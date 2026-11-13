@@ -1,6 +1,6 @@
 {
   "name": "dsh-theme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Visual overrides for DeepSeek Harness: the parts the built-in theme plugin can't reach",
   "type": "module",
   "license": "MIT",
@@ -13,6 +13,7 @@
   "files": [
     "lib",
     "src",
+    "fonts",
     "build.mjs",
     "cordis.patch.yml"
   ],

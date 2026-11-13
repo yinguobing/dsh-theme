@@ -1,11 +1,38 @@
 /**
  * dsh-theme — 全局视觉覆盖。
  *
- * 只放内置主题插件到不了的规则：行高、间距等写死在组件里的值。
- * 配色和字体交给 `--dsw-*` token（主题插件已经管了），这里不要重复定义。
+ * 只放内置主题插件到不了的规则：阅读面字体、行高、间距等写死在组件里的值。
+ * 配色和 UI 字体交给 `--dsw-*` token（主题插件已经管了），这里不要重复定义。
  */
 
-/* ── 对话区 Markdown ──────────────────────────────────────────
+/* ── 阅读面字体 ──────────────────────────────────────────────
+   对话正文用仿宋：横细竖粗、字面比黑体留白更多，长段落读起来省力，
+   视觉上也有印刷品的书卷气。UI（侧栏、按钮、输入框、代码）继续用黑体，
+   机器的声音和人的声音就分开了。
+
+   src 里 local() 排在前面：本机装了同一款字就零下载，用系统渲染的那份。
+   字体文件由宿主侧 `lib/index.js` 挂在 `api/dsh-theme/read-font.woff2`。 */
+@font-face {
+  font-family: 'DSH Read';
+  src: local('Zhuque Fangsong'), local('Zhuque Fangsong (technical preview)'),
+    url('api/dsh-theme/read-font.woff2') format('woff2');
+  font-weight: 400;
+  font-display: block;
+}
+
+:root {
+  /* 仿宋只做了常用字子集（GB2312 一级 + 标点 + 拉丁），生僻字落到系统宋体 */
+  --dsh-read-font: 'DSH Read', 'Songti SC', 'STSong', 'SimSun', 'Source Han Serif SC',
+    'Noto Serif CJK SC', 'Songti TC', serif;
+}
+
+/* 正文和用户气泡都算阅读面；代码在下面单独拉回等宽 */
+[class*='_markdown_'],
+[class*='_bubble_'] {
+  font-family: var(--dsh-read-font);
+}
+
+/* ── 对话区 Markdown 排版 ────────────────────────────────────
    DSH 默认行高写死 32px：正文字号 14px 时比例 2.29 很松，拉到 22px 上限后
    只剩 1.45，中文长段落读起来挤。这里按字号比例给一个 1.65。
    选择器用属性前缀，因为类名是构建时的哈希（_markdown_xxxxx）。 */
@@ -22,7 +49,12 @@
 [class*='_markdown_'] li > p {
   margin-block: 0.25em;
 }
+/* 代码不跟着正文换字体：等宽是代码的一部分 */
 [class*='_markdown_'] pre,
-[class*='_markdown_'] code {
+[class*='_markdown_'] pre code,
+[class*='_markdown_'] code,
+[class*='_markdown_'] kbd,
+[class*='_markdown_'] samp {
+  font-family: var(--dsh-font-family-code, ui-monospace, 'SF Mono', Menlo, monospace);
   line-height: 1.5;
 }
